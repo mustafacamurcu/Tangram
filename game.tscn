@@ -1,0 +1,302 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfnitqlqe5e8u"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_0gxu6"]
+[ext_resource type="AudioStream" uid="uid://bfqcjgsvkjghl" path="res://audio/footstep_concrete_001.ogg" id="2_rwsl2"]
+[ext_resource type="AudioStream" uid="uid://du7nfg0wxlket" path="res://audio/269198__mickleness__game-win.mp3" id="3_3l3ht"]
+[ext_resource type="Script" path="res://sfx.gd" id="3_3v2id"]
+[ext_resource type="Script" path="res://menu_button.gd" id="3_pjgsm"]
+[ext_resource type="FontFile" uid="uid://j4npda7u1ew6" path="res://Matemasie-Regular.ttf" id="5_kdjhq"]
+[ext_resource type="Texture2D" uid="uid://c5o35t6jm1ddx" path="res://camel-svgrepo-com.svg" id="7_lr8qt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5awvw"]
+bg_color = Color(0.4958, 0.74, 0.49987, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.352941, 0.486275, 0.25098, 1)
+corner_radius_top_left = 150
+corner_radius_top_right = 150
+corner_radius_bottom_right = 150
+corner_radius_bottom_left = 150
+
+[sub_resource type="LabelSettings" id="LabelSettings_b8kc6"]
+line_spacing = -10.0
+font = ExtResource("5_kdjhq")
+font_size = 130
+outline_size = 50
+outline_color = Color(1, 0.18, 0.18, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kiqy0"]
+font = ExtResource("5_kdjhq")
+font_size = 45
+font_color = Color(0.33154, 0.651037, 0.214595, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hkfha"]
+content_margin_left = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 10.0
+bg_color = Color(0.370533, 0.56, 0.2352, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_0gxu6")
+
+[node name="Background" type="Polygon2D" parent="."]
+z_index = -100
+position = Vector2(-988, -543)
+polygon = PackedVector2Array(-210, -384, 1957, -14, 2470, 1376, -23, 1096)
+vertex_colors = PackedColorArray(0.66, 0.48048, 0.2112, 1, 0.4712, 0.62, 0.5084, 1, 0.24, 0.296, 0.48, 1, 0.32385, 0.598421, 0.522926, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Pieces" type="Node2D" parent="."]
+
+[node name="PutDownBoard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_rwsl2")
+script = ExtResource("3_3v2id")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3l3ht")
+script = ExtResource("3_3v2id")
+volume_factor = 0.6
+
+[node name="YouWon" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = -486.0
+offset_right = 960.0
+offset_bottom = 500.0
+
+[node name="PanelContainer" type="PanelContainer" parent="YouWon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -28.0
+offset_right = -34.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5awvw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="YouWon/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="YouWon/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 200
+text = "Repaired!"
+label_settings = SubResource("LabelSettings_b8kc6")
+horizontal_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="YouWon/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Flavor" type="Label" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_kiqy0")
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="YouWon/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_hkfha")
+
+[node name="NextLevel" type="Button" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("5_kdjhq")
+theme_override_font_sizes/font_size = 80
+text = "Next Level
+"
+flat = true
+script = ExtResource("3_pjgsm")
+signal_name = "next_level_pressed"
+
+[node name="PanelContainer" type="PanelContainer" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_hkfha")
+
+[node name="LevelSelection" type="Button" parent="YouWon/PanelContainer/VBoxContainer/MarginContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("5_kdjhq")
+theme_override_font_sizes/font_size = 80
+text = "Level Selection"
+flat = true
+script = ExtResource("3_pjgsm")
+signal_name = "level_selection_pressed"
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-605, 479)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.4
+randomness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 1500)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1800.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 15.0
+scale_amount_max = 40.0
+color = Color(0.71, 0.1065, 0, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-450, 472)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.4
+randomness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 1500)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1800.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 15.0
+scale_amount_max = 40.0
+color = Color(0.459106, 0.677231, 0, 1)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-729, 479)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.4
+randomness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 1500)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1800.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 15.0
+scale_amount_max = 40.0
+color = Color(0, 0.027, 0.81, 1)
+
+[node name="CPUParticles2D4" type="CPUParticles2D" parent="Particles"]
+position = Vector2(-290, 473)
+emitting = false
+amount = 50
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.4
+randomness = 1.0
+direction = Vector2(0, -1)
+gravity = Vector2(0, 1500)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1800.0
+angular_velocity_max = 360.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 15.0
+scale_amount_max = 40.0
+color = Color(0.7776, 0.77868, 0.81, 1)
+
+[node name="Smoke" type="CPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-494, -26)
+emitting = false
+amount = 30
+lifetime = 2.5
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(40, 1)
+direction = Vector2(0, -1)
+spread = 40.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 90.0
+initial_velocity_max = 120.0
+scale_amount_min = 20.0
+scale_amount_max = 30.0
+color = Color(0.11, 0.0748, 0.0748, 1)
+
+[node name="Camels" type="Node2D" parent="."]
+visible = false
+
+[node name="Camel" type="TextureRect" parent="Camels"]
+offset_left = -666.0
+offset_top = 119.0
+offset_right = -499.0
+offset_bottom = 317.0
+texture = ExtResource("7_lr8qt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Camel2" type="TextureRect" parent="Camels"]
+offset_left = -286.0
+offset_top = 97.0
+offset_right = -134.0
+offset_bottom = 234.0
+texture = ExtResource("7_lr8qt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Camel3" type="TextureRect" parent="Camels"]
+offset_left = -396.0
+offset_top = 22.0
+offset_right = -275.0
+offset_bottom = 174.0
+texture = ExtResource("7_lr8qt")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Snow" type="CPUParticles2D" parent="."]
+position = Vector2(-490, -578)
+emitting = false
+amount = 500
+lifetime = 5.0
+emission_shape = 3
+emission_rect_extents = Vector2(400, 1)
+direction = Vector2(0, 1)
+spread = 15.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+scale_amount_min = 8.0
+scale_amount_max = 8.0

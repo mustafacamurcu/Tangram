@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhl3jjqv5ncl3"]
+
+[ext_resource type="Script" path="res://level_selector.gd" id="1_cxuui"]
+[ext_resource type="Theme" uid="uid://c7y11ry7cej8d" path="res://menu.tres" id="1_uspfx"]
+[ext_resource type="Script" path="res://menu_button.gd" id="2_al6v3"]
+
+[node name="LevelSelector" type="CanvasLayer"]
+script = ExtResource("1_cxuui")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-194, -251, 1957, -14, 2286, 1237, -23, 1096)
+vertex_colors = PackedColorArray(0.65601, 0.411541, 0.19615, 1, 0.2604, 0.470167, 0.62, 1, 0.483642, 0.27893, 0.267511, 1, 0.32385, 0.598421, 0.522926, 1)
+
+[node name="VBox" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMargin" type="MarginContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="VBox/LabelMargin"]
+layout_mode = 2
+theme = ExtResource("1_uspfx")
+theme_override_constants/outline_size = 25
+theme_override_font_sizes/font_size = 150
+text = "Level  Selection"
+horizontal_alignment = 1
+
+[node name="GridMargin" type="MarginContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 100
+
+[node name="GridContainer" type="GridContainer" parent="VBox/GridMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 320
+theme_override_constants/v_separation = 300
+columns = 5
+
+[node name="BackMargin" type="MarginContainer" parent="VBox"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
+
+[node name="BackToMenu" type="Button" parent="VBox/BackMargin"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_uspfx")
+theme_override_constants/outline_size = 20
+theme_override_font_sizes/font_size = 80
+text = "Back
+"
+flat = true
+script = ExtResource("2_al6v3")
+signal_name = "back_to_menu_pressed"

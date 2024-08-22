@@ -1,0 +1,14 @@
+CPUParticles2D
+Node2D
+TextureRect
+MarginContainer
+Label
+AudioStreamPlayer
+Node
+AnimatedSprite2D
+CanvasLayer
+Polygon2D
+GPUParticles2D
+AudioStreamPlayer2D
+Marker2D
+VBoxContainer

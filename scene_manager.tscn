@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://4d02a1mr71hd"]
+
+[ext_resource type="Script" path="res://scene_manager.gd" id="1_jm2c2"]
+[ext_resource type="Script" path="res://bgm.gd" id="3_adjs5"]
+[ext_resource type="AudioStream" uid="uid://cgs7nim7sorug" path="res://audio/impactGeneric_light_002.ogg" id="4_wpqda"]
+[ext_resource type="Script" path="res://sfx.gd" id="5_fk401"]
+
+[node name="SceneManager" type="Node2D"]
+script = ExtResource("1_jm2c2")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+script = ExtResource("3_adjs5")
+
+[node name="MenuButtonClickSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wpqda")
+script = ExtResource("5_fk401")
